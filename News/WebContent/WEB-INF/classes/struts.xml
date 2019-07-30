@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.i18n.encoding" value="gbk"></constant>
+    
+    <!-- 定义一个名称为news的包，继承struts 2的默认包，指定命名空间为"/" -->
+	<package name="news" namespace="/" extends="struts-default">  
+	    
+	    <!-- 为NewsinfoAction类中的indexsidebar()方法配置映射 -->
+	    <action name="indexsidebar" class="newsinfoAction" method="indexsidebar">
+			<result name="index_sidebar">index-elements/index_sidebar.jsp</result>			
+		</action>		
+		
+		<!-- 为NewsinfoAction类中的index方法配置映射 -->
+		<action name="index" class="newsinfoAction" method="index">
+			<result name="index">/index.jsp</result>			
+		</action>	
+		
+		<!-- 为NewsinfoAction类中的newsread()方法配置映射，浏览新闻内容 -->
+		<action name="newsread" class="newsinfoAction" method="newsread">
+			<result name="news_read">/news_read.jsp</result>			
+		</action>
+		
+		<!--为NewsinfoAction类中的toNewsAdd()方法配置映射，显示新闻添加页   -->
+		<action name="toNewsAdd" class="newsinfoAction" method="toNewsAdd">
+			<result name="news_add">newspages/news_add.jsp</result>			
+		</action>
+		
+		<!-- 为NewsinfoAction类中的doNewsAdd()方法配置映射，执行新闻添加 -->
+		<action name="doNewsAdd" class="newsinfoAction" method="doNewsAdd">
+			<result name="admin" type="redirectAction">admin</result>			
+		</action>
+		
+		<!-- 显示新闻管理页 -->
+		<action name="admin" class="newsinfoAction" method="admin">
+			<result name="admin">newspages/admin.jsp</result>			
+		</action>
+		
+		<!--为NewsinfoAction类中的deleteNews()方法配置映射，执行新闻删除   -->
+		<action name="deleteNews" class="newsinfoAction" method="deleteNews">
+			<result name="admin" type="redirectAction">admin</result>			
+		</action>		
+		
+		<!--为NewsinfoAction类中的toNewsModify()方法配置映射，显示新闻修改页   -->
+		<action name="toNewsModify" class="newsinfoAction" method="toNewsModify">
+			<result name="news_modify">newspages/news_modify.jsp</result>			
+		</action>
+		
+		<!--为NewsinfoAction类中的doNewsModify()方法配置映射，执行新闻修改   -->
+		<action name="doNewsModify" class="newsinfoAction" method="doNewsModify">
+			<result name="admin" type="redirectAction">admin</result>			
+		</action>
+		
+		<!--为TopicAction类中的addtopic()方法配置映射，添加主题   -->
+		<action name="addtopic" class="topicAction" method="addtopic">
+			<result name="admin" type="redirectAction">admin</result>			
+		</action>
+		
+		<!--为TopicAction类中的topiclist()方法配置映射，显示主题编辑页   -->
+		<action name="topiclist" class="topicAction" method="topiclist">
+			<result name="topic_list">newspages/topic_list.jsp</result>			
+		</action>
+		
+		<!--为TopicAction类中的deletetopic()方法配置映射，删除主题   -->
+		<action name="deletetopic" class="topicAction" method="deletetopic">
+			<result name="topiclist" type="redirectAction">topiclist</result>			
+		</action>
+		
+		<!--为TopicAction类中的toTopicModify()方法配置映射，显示主题修改页   -->
+		<action name="toTopicModify" class="topicAction" method="toTopicModify">
+			<result name="topic_modify">newspages/topic_modify.jsp</result>			
+		</action>
+		
+		<!--为TopicAction类中的doTopicModify()方法配置映射，执行主题修改请求   -->
+		<action name="doTopicModify" class="topicAction" method="doTopicModify">
+			<result name="topiclist" type="redirectAction">topiclist</result>			
+		</action>
+	  
+	  
+		
+		<!-- 采用通配符为SecondleveltitleAction类的所有方法配置映射 -->
+		<action name="*" class="adminAction" method="{1}">
+			<result name="index" type="redirectAction">index</result>	
+		</action>  
+		
+	</package>
+	
+</struts>    
